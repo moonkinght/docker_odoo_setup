@@ -13,7 +13,7 @@ jobs:
         run: |
           echo "Stopping the server"
           cd /opt/odoo/odoo_docker_15
-          docker-compose stop
+          sudo docker-compose stop
           echo "Server stopped..."
           
   code-backup:
@@ -34,5 +34,5 @@ jobs:
         run: |
           echo "Starting server."
           cd /opt/odoo/odoo_docker_15
-          docker-compose restart
+          sudo docker-compose restart
   
