@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  
+jobs:
+
+  stop-odoo-server:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Stop odoo server
+        run: |
+          echo "Stopping the server"
+          cd /opt/odoo/odoo_docker_15
+          docker-compose stop
+          echo "Server stopped..."
+          
+  code-backup:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Take a Code Backup
+        run: |
+          echo "Taking code backup..."
+          python3 /home/st22122105/projects/backup.py
+          echo "Code backup completed....."
+          
+  start-server:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start the server
+        run: |
+          echo "Starting server."
+          cd /opt/odoo/odoo_docker_15
+          docker-compose restart
+  
