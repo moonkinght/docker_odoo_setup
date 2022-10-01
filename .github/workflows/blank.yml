@@ -19,7 +19,7 @@ jobs:
   code-backup:
     runs-on: self-hosted
     if: ${{ always()}}
-    needs: [stop-odoo-server]
+    needs: stop-odoo-server
     steps:
       - uses: actions/checkout@v3
       - name: Take a Code Backup
@@ -31,7 +31,7 @@ jobs:
   start-server:
     runs-on: self-hosted
     if: ${{ always()}}
-    needs: [code-backup]
+    needs: code-backup
     steps:
       - uses: actions/checkout@v3
       - name: Start the server
